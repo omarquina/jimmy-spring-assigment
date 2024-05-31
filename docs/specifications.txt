@@ -1,0 +1,29 @@
+You may submit your work in .zip format or you can deploy it to your Github/Bitbucket.
+
+Assignment:
+
+Car Reservation API
+
+The goal of the application is to reserve cars for upcoming rides. 
+
+As a user of the system, you can add cars where each car is represented by its make, model and unique identifier following the pattern “C<number>”. 
+
+Besides adding a new car, a user can also update one, remove one, or see all the cars (no pagination needed). 
+
+The last step in the flow is the ability to reserve a car for a ride at a certain time and duration. The reservation can be taken up to 24 hours ahead and the duration can take up to 2 hours. The system should find an available car, store the reservation if possible and give back a response with the details. The user can also see all the upcoming reservations by calling another dedicated endpoint. 
+
+The communication is only via API in the JSON format and the data can be stored just in the memory. The application doesn’t need to implement a concept of users (data is shared).
+
+The solution should clearly represent your architectural knowledge and follow the best practices overall including loose coupling and automated testing.
+
+Technical Requirements:
+
+* Java/Kotlin
+
+* Spring Boot or Ktor
+
+* Automated tests
+
+* REST API + documentation
+
+* Docker

@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  rides: &rides-service
+    build:
+      context: ../
+      dockerfile: ./devops/Dockerfile
+    container_name: ${APP_NAME}
+    image: spring-boot-rides
+    env_file: 
+      - .env
+    restart: always
+    ports:
+      - "${PUBLIC_PORT}:${PRIVATE_PORT}"
+
+  rides-dev: 
+    <<: *rides-service
+    build:
+      context: ../
+      dockerfile: ./devops/Dockerfile
+      target: develop
+    container_name: ${APP_NAME}-dev
+    image: spring-boot-rides-dev
+    ports: 
+      - "${PUBLIC_PORT}:${PRIVATE_PORT}"
+    volumes:
+      - '../:/app'
+      - '../packages:/root/.m2/'
