@@ -9,6 +9,8 @@ import org.springframework.data.domain.Range;
 public class ReservationRules {
 	private static final DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"); 
   private static final Integer maxHoursAheadToReserve = 24;
+	private static final Integer maxMinutesForReservationPeriod = 120;
+
 
 	public static LocalDateTime getMaxDateAccepted() {
 		LocalDateTime now = LocalDateTime.now();
@@ -38,7 +40,7 @@ public class ReservationRules {
 	}
 
 	public static Range<Integer> durationRange(){
-		Range<Integer> durationRange = Range.closed(1,2);
+		Range<Integer> durationRange = Range.closed(1,maxMinutesForReservationPeriod);
 		return durationRange;
 	}
 }

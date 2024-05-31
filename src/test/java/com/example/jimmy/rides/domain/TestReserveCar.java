@@ -124,7 +124,7 @@ class TestReserveCar {
 
 		ReserveCarDto dto = new ReserveCarDto();
 		dto.setStartDate(startDate.format(formatter));
-		dto.setDuration(1);
+		dto.setDuration(60);
     Reservation reservation = reserveCar.execute(dto);
 		assertNull(reservation,"There must not be any car available");
 	}
@@ -140,14 +140,14 @@ class TestReserveCar {
 
 		ReserveCarDto dto = new ReserveCarDto();
 		dto.setStartDate(startDate.format(formatter));
-		dto.setDuration(1);
+		dto.setDuration(60);
     
 		Exception exception = assertThrows(BeyondDatePermittedException.class, () -> reserveCar.execute(dto));
 	}
 
 	@Transactional
 	@Test
-	void ShouldFailIfReserveCarBy3HourDuration() throws Exception {
+	void ShouldFailIfReserveCarBy3HoursOr180MinsDuration() throws Exception {
 		// Reservation data initialization
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
 		LocalDateTime startDate = LocalDateTime.now().plusHours(23);
@@ -155,7 +155,7 @@ class TestReserveCar {
 		// First Reservation
 		ReserveCarDto dto = new ReserveCarDto();
 		dto.setStartDate(startDate.format(formatter));
-		dto.setDuration(3);
+		dto.setDuration(300);
     
 		Exception exception = assertThrows(PeriodNotValidException.class, () -> reserveCar.execute(dto));
 	}
